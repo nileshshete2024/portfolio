@@ -7,7 +7,7 @@ const DATA = {
   phone: "+91 9130362410",
   location: "Pune, India",
   linkedin: "https://linkedin.com/in/nileshshete",
-  about: "Frontend / React Developer with 4 years of experience building scalable fintech web applications and dashboards. Strong expertise in React.js, Next.js, TypeScript, Redux Toolkit, REST AP[...]
+  about: "Frontend / React Developer with 4 years of experience building scalable fintech web applications and dashboards. Strong expertise in React.js, Next.js, TypeScript, Redux Toolkit, REST APIs, and Redux state management.",
   stats: [
     { value: "4+", label: "Years Experience" },
     { value: "10+", label: "Projects Delivered" },
@@ -45,10 +45,10 @@ const DATA = {
     { name: "DevOps & Tools", color: "#EC4899", items: ["Git", "GitHub Actions", "Jenkins", "Docker", "Bitbucket", "CI/CD", "Agile/Scrum"], span2: true },
   ],
   projects: [
-    { icon: "📱", num: "01", title: "UDS Partner Agent PWA", desc: "Mobile-first Progressive Web App for Easebuzz field agents to streamline merchant onboarding with KYC workflows and real-time [...]
-    { icon: "🤖", num: "02", title: "GenAI – Easebuzz ERA", desc: "AI-powered dynamic form generation integrated with Easebuzz Rapid Assist, enabling prompt-driven workflows for custom forms."[...]
-    { icon: "🏦", num: "03", title: "Bandhan Bank Integration", desc: "Customer-facing frontend of Bandhan Bank's payment integration with seamless Java backend service connectivity.", color: "#[...]
-    { icon: "🎓", num: "04", title: "Edu-revamp Project", desc: "Migration of a fee collection system from Angular to React with performance optimization and a custom drag-and-drop form builder.[...]
+    { icon: "📱", num: "01", title: "UDS Partner Agent PWA", desc: "Mobile-first Progressive Web App for Easebuzz field agents to streamline merchant onboarding with KYC workflows and real-time tracking.", highlights: ["Real-time updates", "Offline support"], tech: ["React", "PWA", "TypeScript"] },
+    { icon: "🤖", num: "02", title: "GenAI – Easebuzz ERA", desc: "AI-powered dynamic form generation integrated with Easebuzz Rapid Assist, enabling prompt-driven workflows for custom forms.", highlights: ["AI integration", "Custom forms"], tech: ["React", "AI/ML", "TypeScript"] },
+    { icon: "🏦", num: "03", title: "Bandhan Bank Integration", desc: "Customer-facing frontend of Bandhan Bank's payment integration with seamless Java backend service connectivity.", color: "#3B82F6", highlights: ["Payment gateway", "Bank integration"], tech: ["React", "REST API", "TypeScript"] },
+    { icon: "🎓", num: "04", title: "Edu-revamp Project", desc: "Migration of a fee collection system from Angular to React with performance optimization and a custom drag-and-drop form builder.", highlights: ["Drag & drop", "Form builder"], tech: ["React", "Redux", "TypeScript"] },
   ],
   certifications: [
     { name: "React - The Complete Guide", issuer: "Udemy", year: "2022" },
@@ -165,17 +165,9 @@ function Card({ children, style = {}, hover = true }: { children: ReactNode; sty
         transition: "all .3s ease",
         transform: hov ? "translateY(-3px)" : "none",
         ...style,
-      }}      className="card-padding"    >
+      }} className="card-padding">
       {children}
     </div>
-  );
-}
-
-function Tag({ children, color = "#38BDF8" }: { children: ReactNode; color?: string }) {
-  return (
-    <span style={{ display: "inline-block", padding: "4px 11px", background: `${color}12`, border: `1px solid ${color}35`, borderRadius: 999, fontSize: 12, color, fontWeight: 500, whiteSpace: "nowrap" }}>
-      {children}
-    </span>
   );
 }
 
@@ -239,7 +231,7 @@ function Hero() {
               Building scalable fintech web apps with React.js, Next.js & TypeScript. 4 years of turning complex requirements into fast, beautiful UIs.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: "2rem", animation: "fadeUp .6s .4s both" }}>
-              {["React.js","Next.js","TypeScript","Redux","TailwindCSS"].map(t => (
+              {["React.js","Next.js","TypeScript","Redux","TailwindCSS"].map((t: string) => (
                 <span key={t} style={{ padding: "5px 12px", background: "rgba(129,140,248,.09)", border: "1px solid rgba(129,140,248,.22)", borderRadius: 6, fontSize: 12, color: "#818CF8", fontWeight: 500 }}>
                   {t}
                 </span>
@@ -394,14 +386,14 @@ function ExperienceSection() {
                 <span style={{ padding: "5px 12px", background: "rgba(52,211,153,.08)", border: "1px solid rgba(52,211,153,.2)", borderRadius: 999, fontSize: 12, color: "#34D399" }}>Full-time</span>
               </div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
-                {exp.highlights.map((h, i) => (
+                {exp.highlights.map((h: string, i: number) => (
                   <li key={i} style={{ display: "flex", gap: "0.75rem", fontSize: 15, color: "#8892AA", lineHeight: 1.7 }}>
                     <span style={{ color: exp.color, flexShrink: 0, marginTop: 4, fontSize: 14 }}>▹</span>{h}
                   </li>
                 ))}
               </ul>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,.07)" }}>
-                {exp.metrics.map(m => (
+                {exp.metrics.map((m: any) => (
                   <div key={m.label} style={{ textAlign: "center" }}>
                     <span style={{ display: "block", fontFamily: "'Syne',sans-serif", fontSize: "1.75rem", fontWeight: 800, color: m.color, lineHeight: 1 }}>{m.value}</span>
                     <span style={{ fontSize: 11, color: "#3A4455", marginTop: 4, display: "block" }}>{m.label}</span>
@@ -460,14 +452,14 @@ function ProjectCard({ project: p }: { project: ProjectType }) {
       <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.3 }}>{p.title}</div>
       <p style={{ fontSize: 14, color: "#8892AA", lineHeight: 1.75 }}>{p.desc}</p>
       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#8892AA" }}>
-        {p.highlights.map((h, i) => (
+        {p.highlights.map((h: string, i: number) => (
           <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", lineHeight: 1.5 }}>
             <span style={{ color: p.color || "#38BDF8", flexShrink: 0, fontSize: 11, marginTop: 2 }}>✓</span>{h}
           </li>
         ))}
       </ul>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
-        {p.tech.map(t => (
+        {p.tech.map((t: string) => (
           <span key={t} style={{ padding: "4px 11px", background: `rgba(56,189,248,.08)`, border: `1px solid rgba(56,189,248,.28)`, borderRadius: 999, fontSize: 12, color: p.color || "#38BDF8", fontWeight: 500 }}>
             {t}
           </span>
@@ -493,7 +485,7 @@ function Skills() {
                   <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#8892AA" }}>{cat.name}</div>
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {cat.items.map(item => (
+                  {cat.items.map((item: string) => (
                     <span key={item} style={{ padding: "5px 11px", background: `${cat.color}0D`, border: `1px solid ${cat.color}28`, borderRadius: 6, fontSize: 12.5, fontWeight: 500, color: "#F0F4FF" }}>
                       {item}
                     </span>
