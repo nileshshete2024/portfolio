@@ -7,7 +7,7 @@ const DATA = {
   phone: "+91 9130362410",
   location: "Pune, India",
   linkedin: "https://linkedin.com/in/nileshshete",
-  about: "Frontend / React Developer with 4 years of experience building scalable fintech web applications and dashboards. Strong expertise in React.js, Next.js, TypeScript, Redux Toolkit, REST APIs, and Redux state management.",
+  about: "Frontend / React Developer with 4 years of experience building scalable fintech web applications and dashboards. Strong expertise in React.js, Next.js, TypeScript, Redux Toolkit, REST APIs, and performance optimization.",
   stats: [
     { value: "4+", label: "Years Experience" },
     { value: "10+", label: "Projects Delivered" },
@@ -45,10 +45,10 @@ const DATA = {
     { name: "DevOps & Tools", color: "#EC4899", items: ["Git", "GitHub Actions", "Jenkins", "Docker", "Bitbucket", "CI/CD", "Agile/Scrum"], span2: true },
   ],
   projects: [
-    { icon: "📱", num: "01", title: "UDS Partner Agent PWA", desc: "Mobile-first Progressive Web App for Easebuzz field agents to streamline merchant onboarding with KYC workflows and real-time tracking.", highlights: ["Real-time updates", "Offline support"], tech: ["React", "PWA", "TypeScript"] },
-    { icon: "🤖", num: "02", title: "GenAI – Easebuzz ERA", desc: "AI-powered dynamic form generation integrated with Easebuzz Rapid Assist, enabling prompt-driven workflows for custom forms.", highlights: ["AI integration", "Custom forms"], tech: ["React", "AI/ML", "TypeScript"] },
-    { icon: "🏦", num: "03", title: "Bandhan Bank Integration", desc: "Customer-facing frontend of Bandhan Bank's payment integration with seamless Java backend service connectivity.", color: "#3B82F6", highlights: ["Payment gateway", "Bank integration"], tech: ["React", "REST API", "TypeScript"] },
-    { icon: "🎓", num: "04", title: "Edu-revamp Project", desc: "Migration of a fee collection system from Angular to React with performance optimization and a custom drag-and-drop form builder.", highlights: ["Drag & drop", "Form builder"], tech: ["React", "Redux", "TypeScript"] },
+    { icon: "📱", num: "01", title: "UDS Partner Agent PWA", desc: "Mobile-first Progressive Web App for Easebuzz field agents to streamline merchant onboarding with KYC workflows and real-time updates.", color: "#38BDF8", colorRgb: "56,189,248", highlights: ["KYC workflow automation", "Real-time data sync", "Offline support"], tech: ["React", "PWA", "TypeScript"] },
+    { icon: "🤖", num: "02", title: "GenAI – Easebuzz ERA", desc: "AI-powered dynamic form generation integrated with Easebuzz Rapid Assist, enabling prompt-driven workflows for custom forms.", color: "#818CF8", colorRgb: "129,140,248", highlights: ["AI form generation", "Dynamic workflows", "Schema integration"], tech: ["React", "AI/ML", "Redux"] },
+    { icon: "🏦", num: "03", title: "Bandhan Bank Integration", desc: "Customer-facing frontend of Bandhan Bank's payment integration with seamless Java backend service connectivity.", color: "#34D399", colorRgb: "52,211,153", highlights: ["Payment gateway", "Backend integration", "Security protocols"], tech: ["React", "REST APIs", "Redux"] },
+    { icon: "🎓", num: "04", title: "Edu-revamp Project", desc: "Migration of a fee collection system from Angular to React with performance optimization and a custom drag-and-drop form builder.", color: "#F59E0B", colorRgb: "245,158,11", highlights: ["Angular to React migration", "Form builder", "Performance boost"], tech: ["React", "Drag & Drop", "TypeScript"] },
   ],
   certifications: [
     { name: "React - The Complete Guide", issuer: "Udemy", year: "2022" },
@@ -133,7 +133,7 @@ function useInView(threshold = 0.15): [Ref<HTMLDivElement>, boolean] {
 function FadeUp({ children, delay = 0, style = {} }: { children: ReactNode; delay?: number; style?: React.CSSProperties }) {
   const [ref, inView] = useInView();
   return (
-    <div ref={ref} style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)", transition: `opacity .65s ease ${delay}s, transform .65s ease ${delay}s`, ...style }}>
+    <div ref={ref as Ref<HTMLDivElement>} style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(28px)", transition: `opacity .65s ease ${delay}s, transform .65s ease ${delay}s`, ...style }}>
       {children}
     </div>
   );
@@ -182,7 +182,7 @@ function Navbar() {
   const links = ["About", "Experience", "Projects", "Skills", "Contact"];
   return (
     <>
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: scrolled ? "0.8rem 2rem" : "1.25rem 2rem", background: scrolled ? "rgba(8,11,20,.9)" : "transparent", backdropFilter: scrolled ? "blur(10px)" : "none", transition: "all .3s ease" }}>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: scrolled ? "0.8rem 2rem" : "1.25rem 2rem", background: scrolled ? "rgba(8,11,20,.9)" : "transparent", backdropFilter: scrolled ? "blur(20px)" : "none", borderBottom: scrolled ? "1px solid rgba(255,255,255,.05)" : "none", transition: "all .3s" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <a href="#hero" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "1.1rem", color: "#F0F4FF", textDecoration: "none" }}>
             <span style={{ color: "#38BDF8" }}>&lt;</span>NS<span style={{ color: "#38BDF8" }}>/&gt;</span>
@@ -192,18 +192,18 @@ function Navbar() {
               <li key={l}><a href={`#${l.toLowerCase()}`} style={{ color: "#8892AA", textDecoration: "none", fontSize: 14, fontWeight: 500 }}>{l}</a></li>
             ))}
             <li>
-              <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "8px 18px", background: "#38BDF8", color: "#050810", borderRadius: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}>Connect</a>
+              <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "8px 18px", background: "#38BDF8", color: "#050810", borderRadius: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}>LinkedIn</a>
             </li>
           </ul>
           <button onClick={() => setOpen(!open)} style={{ display: "none", flexDirection: "column", gap: 5, background: "none", border: "none", cursor: "pointer", padding: 4 }} className="burger-btn">
-            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg) translateY(10px)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg) translateY(-10px)" : "none" }} />)}
+            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg)" : "none", originX: "center" }} />)}
           </button>
         </div>
       </nav>
       {open && (
-        <div style={{ position: "fixed", top: 0, right: 0, height: "100vh", width: 280, background: "rgba(13,18,32,.98)", backdropFilter: "blur(30px)", zIndex: 99, display: "flex", flexDirection: "column", padding: "2rem", gap: "1.5rem", paddingTop: 80 }}>
+        <div style={{ position: "fixed", top: 0, right: 0, height: "100vh", width: 280, background: "rgba(13,18,32,.98)", backdropFilter: "blur(30px)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.5rem", padding: "100px 1.5rem", animation: "fadeUp .3s" }}>
           {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{ color: "#8892AA", textDecoration: "none", fontSize: 17, fontWeight: 500 }}>{l}</a>)}
-          <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "10px 20px", background: "#38BDF8", color: "#050810", borderRadius: 9, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>Connect</a>
+          <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "10px 20px", background: "#38BDF8", color: "#050810", borderRadius: 9, fontSize: 14, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>LinkedIn</a>
         </div>
       )}
       <style>{`
@@ -219,14 +219,14 @@ function Hero() {
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem", width: "100%" }} className="hero-content">
         <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "center", marginBottom: 64 }} className="hero-grid">
           <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(52,211,153,.09)", border: "1px solid rgba(52,211,153,.25)", borderRadius: 999, padding: "6px 16px", fontSize: 12.5, color: "#34D399", fontWeight: 500, marginBottom: "1.5rem" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(52,211,153,.09)", border: "1px solid rgba(52,211,153,.25)", borderRadius: 999, padding: "6px 16px", marginBottom: "1.5rem" }}>
               <span style={{ width: 7, height: 7, background: "#34D399", borderRadius: "50%", animation: "pulse 2s infinite" }} />
               Available for opportunities
             </div>
             <h1 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(2.4rem,5.5vw,3.8rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "0.4rem", animation: "fadeUp .6s .2s both" }} className="hero-title">
               Hi, I'm <span className="grad">Nilesh Shete</span>
             </h1>
-            <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 700, color: "#8892AA", marginBottom: "1.25rem", animation: "fadeUp .6s .3s both" }} className="hero-subtitle">Frontend Developer & React.js Expert</h2>
+            <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 700, color: "#8892AA", marginBottom: "1.25rem", animation: "fadeUp .6s .3s both" }} className="hero-subtitle">Frontend Developer</h2>
             <p style={{ color: "#8892AA", fontSize: "1rem", lineHeight: 1.8, maxWidth: 480, marginBottom: "1.5rem", animation: "fadeUp .6s .35s both" }}>
               Building scalable fintech web apps with React.js, Next.js & TypeScript. 4 years of turning complex requirements into fast, beautiful UIs.
             </p>
@@ -241,7 +241,7 @@ function Hero() {
               <a href="#projects" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "13px 26px", background: "#38BDF8", color: "#050810", fontSize: 14.5, fontWeight: 700, borderRadius: 10, textDecoration: "none", transition: "all .3s" }}>
                 View My Work <span>→</span>
               </a>
-              <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 25px", background: "transparent", border: "1px solid rgba(255,255,255,.15)", color: "#F0F4FF", fontSize: 14.5, fontWeight: 700, borderRadius: 10, textDecoration: "none", transition: "all .3s" }}>
+              <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "12px 25px", background: "transparent", border: "1px solid #38BDF8", color: "#38BDF8", fontSize: 14, fontWeight: 600, borderRadius: 10, textDecoration: "none" }}>
                 LinkedIn ↗
               </a>
             </div>
@@ -281,7 +281,7 @@ function SocialIcon({ href, children }: { href: string; children: ReactNode }) {
   const [hov, setHov] = useState(false);
   return (
     <a href={href} target="_blank" rel="noreferrer" onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.1)"}`, borderRadius: 10, color: hov ? "#38BDF8" : "#8892AA", transition: "all .3s" }}>
+      style={{ width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.1)"}`, borderRadius: 10, color: hov ? "#38BDF8" : "#8892AA", transition: "all .3s", textDecoration: "none" }}>
       {children}
     </a>
   );
@@ -292,7 +292,7 @@ function AvatarOrb() {
     <div style={{ position: "relative", width: 240, height: 240, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }} className="avatar-orb">
       <div style={{ position: "absolute", width: 195, height: 195, borderRadius: "50%", border: "1px dashed rgba(56,189,248,.15)", animation: "spin 16s linear infinite" }} />
       <div style={{ position: "absolute", width: 238, height: 238, borderRadius: "50%", border: "1px dashed rgba(129,140,248,.1)", animation: "spinR 22s linear infinite" }} />
-      <div style={{ width: 140, height: 140, background: "rgba(56,189,248,.09)", border: "2px solid rgba(56,189,248,.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 10 }}>
+      <div style={{ width: 140, height: 140, background: "rgba(56,189,248,.09)", border: "2px solid rgba(56,189,248,.3)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center" }}>
         <span style={{ fontSize: "3rem", animation: "flt 3s ease-in-out infinite" }}>👨‍💻</span>
       </div>
       {[
@@ -300,7 +300,7 @@ function AvatarOrb() {
         { text: "🚀 4+ Years", bottom: 50, right: -45, delay: 1.2 },
         { text: "✅ React.js", bottom: 5, left: -10, delay: 2.5 },
       ].map((b, i) => (
-        <div key={i} style={{ position: "absolute", background: "#0D1220", border: "1px solid rgba(255,255,255,.09)", borderRadius: 9, padding: "6px 12px", fontSize: 11, fontWeight: 500, whiteSpace: "nowrap", top: b.top, bottom: b.bottom, right: b.right, left: b.left, animation: `fadeUp .6s ${b.delay}s both` }}>
+        <div key={i} style={{ position: "absolute", background: "#0D1220", border: "1px solid rgba(255,255,255,.09)", borderRadius: 9, padding: "6px 12px", fontSize: 11, fontWeight: 500, whiteSpace: "nowrap", ...(b.top !== undefined && { top: b.top }), ...(b.bottom !== undefined && { bottom: b.bottom }), ...(b.right !== undefined && { right: b.right }), ...(b.left !== undefined && { left: b.left }), animation: `flt 3s ease-in-out infinite` }}>
           {b.text}
         </div>
       ))}
@@ -318,7 +318,7 @@ function About() {
               <SectionLabel>About Me</SectionLabel>
               <SectionTitle>Crafting Digital<br />Experiences</SectionTitle>
               <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8, marginBottom: "1rem" }}>{DATA.about}</p>
-              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8 }}>I thrive at the intersection of design and engineering — turning complex business requirements into clean, intuitive interfaces.</p>
+              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8 }}>I thrive at the intersection of design and engineering — turning complex business requirements into clean, intuitive interfaces that users love.</p>
               <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {[
                   { icon: "📍", label: "Location", value: DATA.location },
@@ -337,7 +337,7 @@ function About() {
                 ))}
               </div>
               <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", flexWrap: "wrap" }}>
-                <a href={DATA.linkedin} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "11px 23px", background: "transparent", color: "#F0F4FF", border: "1px solid rgba(255,255,255,.15)", fontSize: 14, fontWeight: 600, borderRadius: 9, textDecoration: "none", transition: "all .3s" }}>
+                <a href={DATA.linkedin} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "11px 23px", background: "transparent", color: "#F0F4FF", border: "1px solid #38BDF8", borderRadius: 10, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
                   View LinkedIn ↗
                 </a>
               </div>
@@ -415,7 +415,7 @@ function Projects() {
         <FadeUp>
           <SectionLabel>Projects</SectionLabel>
           <SectionTitle>Things I've Built</SectionTitle>
-          <p style={{ color: "#8892AA", maxWidth: 580, marginBottom: "3rem", fontSize: 15.5 }}>A curated selection of projects from my 4 years at Easebuzz — fintech dashboards, PWAs, GenAI integrations, and performance optimizations.</p>
+          <p style={{ color: "#8892AA", maxWidth: 580, marginBottom: "3rem", fontSize: 15.5 }}>A curated selection of projects from my 4 years at Easebuzz — fintech dashboards, PWAs, GenAI integrations, and full-stack systems.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }} className="projects-grid">
             {DATA.projects.map((p, i) => <ProjectCard key={i} project={p} />)}
           </div>
@@ -430,8 +430,8 @@ interface ProjectType {
   num: string;
   title: string;
   desc: string;
-  color?: string;
-  colorRgb?: string;
+  color: string;
+  colorRgb: string;
   highlights: string[];
   tech: string[];
 }
@@ -442,9 +442,9 @@ function ProjectCard({ project: p }: { project: ProjectType }) {
     <div
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      style={{ position: "relative", overflow: "hidden", background: hov ? "#131929" : "#0D1220", border: `1px solid ${hov ? (p.color || "#38BDF8") + "55" : "rgba(255,255,255,.07)"}`, borderRadius: 16, padding: "1.75rem", transition: "all .3s", cursor: "pointer" }}
+      style={{ position: "relative", overflow: "hidden", background: hov ? "#131929" : "#0D1220", border: `1px solid ${hov ? (p.color) + "55" : "rgba(255,255,255,.07)"}`, borderRadius: 16, padding: "2rem", cursor: "pointer", transition: "all .3s", display: "flex", flexDirection: "column" }}
     >
-      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: p.color || "#38BDF8", opacity: hov ? 1 : 0, transition: "opacity .3s" }} />
+      <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: p.color, opacity: hov ? 1 : 0, transition: "opacity .3s" }} />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <span style={{ fontSize: "2rem" }}>{p.icon}</span>
         <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.25rem", fontWeight: 800, color: "#3A4455", opacity: 0.4 }}>{p.num}</span>
@@ -454,13 +454,13 @@ function ProjectCard({ project: p }: { project: ProjectType }) {
       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#8892AA" }}>
         {p.highlights.map((h: string, i: number) => (
           <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", lineHeight: 1.5 }}>
-            <span style={{ color: p.color || "#38BDF8", flexShrink: 0, fontSize: 11, marginTop: 2 }}>✓</span>{h}
+            <span style={{ color: p.color, flexShrink: 0, fontSize: 11, marginTop: 2 }}>✓</span>{h}
           </li>
         ))}
       </ul>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
         {p.tech.map((t: string) => (
-          <span key={t} style={{ padding: "4px 11px", background: `rgba(56,189,248,.08)`, border: `1px solid rgba(56,189,248,.28)`, borderRadius: 999, fontSize: 12, color: p.color || "#38BDF8", fontWeight: 500 }}>
+          <span key={t} style={{ padding: "4px 11px", background: `rgba(${p.colorRgb},.08)`, border: `1px solid rgba(${p.colorRgb},.28)`, borderRadius: 999, fontSize: 12, color: p.color, fontWeight: 500 }}>
             {t}
           </span>
         ))}
@@ -534,7 +534,7 @@ function Education() {
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "1rem" }}>{edu.icon}</span>
                 <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.5rem", lineHeight: 1.4 }}>{edu.degree}</div>
                 <div style={{ fontSize: 14, color: "#8892AA", lineHeight: 1.5 }}>{edu.institution}</div>
-                {edu.latest && <div style={{ display: "inline-block", marginTop: "1rem", padding: "4px 12px", background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.22)", borderRadius: 4, fontSize: 11, color: "#38BDF8", fontWeight: 600 }}>Latest</div>}
+                {edu.latest && <div style={{ display: "inline-block", marginTop: "1rem", padding: "4px 12px", background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.22)", borderRadius: 999, fontSize: 11, color: "#38BDF8", fontWeight: 600 }}>Latest</div>}
               </Card>
             ))}
           </div>
@@ -553,7 +553,7 @@ function Contact() {
             <div>
               <SectionLabel>Contact</SectionLabel>
               <SectionTitle>Let's Build<br />Something Together</SectionTitle>
-              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8, marginBottom: "2.5rem" }}>I'm currently open to new opportunities. Whether you have a project in mind, want to discuss tech, or just want to connect — feel free to reach out!</p>
+              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8, marginBottom: "2.5rem" }}>I'm currently open to new opportunities. Whether you have a project in mind, want to discuss potential collaborations, or just want to chat — I'd love to hear from you!</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {[
                   { href: `mailto:${DATA.email}`, label: "Email", value: DATA.email, icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> },
@@ -564,12 +564,12 @@ function Contact() {
             </div>
             <Card style={{ padding: "2.5rem", background: "linear-gradient(135deg,rgba(56,189,248,.05),rgba(129,140,248,.05))", borderColor: "rgba(56,189,248,.15)" }} hover={false}>
               <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 700, marginBottom: "1rem" }}>Ready to work together?</div>
-              <p style={{ color: "#8892AA", fontSize: 14.5, lineHeight: 1.75, marginBottom: "2rem" }}>I'm available for full-time roles, freelance projects, and consulting. Let's discuss how I can help bring your ideas to life.</p>
+              <p style={{ color: "#8892AA", fontSize: 14.5, lineHeight: 1.75, marginBottom: "2rem" }}>I'm available for full-time roles, freelance projects, and consulting. Let's discuss how I can contribute to your next project.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                <a href={`mailto:${DATA.email}`} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 0", background: "#38BDF8", color: "#050810", fontWeight: 700, fontSize: 14.5, borderRadius: 9, textDecoration: "none", transition: "all .3s" }}>
+                <a href={`mailto:${DATA.email}`} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 0", background: "#38BDF8", color: "#050810", fontWeight: 700, borderRadius: 10, textDecoration: "none", fontSize: 14, transition: "all .3s" }}>
                   Send me an email →
                 </a>
-                <a href={DATA.linkedin} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "12px 0", background: "transparent", border: "1px solid rgba(255,255,255,.15)", color: "#F0F4FF", fontWeight: 700, fontSize: 14.5, borderRadius: 9, textDecoration: "none", transition: "all .3s" }}>
+                <a href={DATA.linkedin} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "12px 0", background: "transparent", border: "1px solid #38BDF8", color: "#38BDF8", fontWeight: 600, borderRadius: 10, textDecoration: "none", fontSize: 14 }}>
                   Connect on LinkedIn
                 </a>
               </div>
@@ -586,7 +586,7 @@ function ContactLink({ href, label, value, icon }: { href: string; label: string
   return (
     <a href={href} target="_blank" rel="noreferrer"
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 1.25rem", background: "#0D1220", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.07)"}`, borderRadius: 12, transition: "all .3s", textDecoration: "none", color: "inherit" }}>
+      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 1.25rem", background: "#0D1220", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.07)"}`, borderRadius: 12, transition: "all .3s", textDecoration: "none" }}>
       <div style={{ width: 44, height: 44, background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.15)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: "#38BDF8", flexShrink: 0 }}>
         {icon}
       </div>
@@ -622,8 +622,8 @@ export default function App() {
     <>
       <style>{css}</style>
       <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0 }}>
-        <div style={{ position: "absolute", width: 700, height: 700, background: "#0EA5E9", borderRadius: "50%", filter: "blur(120px)", top: -250, right: -200, opacity: 0.07, animation: "blobf 9s ease-in-out infinite" }} />
-        <div style={{ position: "absolute", width: 600, height: 600, background: "#818CF8", borderRadius: "50%", filter: "blur(120px)", bottom: 100, left: -200, opacity: 0.07, animation: "blobf 12s ease-in-out infinite" }} />
+        <div style={{ position: "absolute", width: 700, height: 700, background: "#0EA5E9", borderRadius: "50%", filter: "blur(120px)", top: -250, right: -200, opacity: 0.07, animation: "blobf 9s infinite" }} />
+        <div style={{ position: "absolute", width: 600, height: 600, background: "#818CF8", borderRadius: "50%", filter: "blur(120px)", bottom: 100, left: -200, opacity: 0.07, animation: "blobf 12s infinite reverse" }} />
       </div>
       <Navbar />
       <main>
