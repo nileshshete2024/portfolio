@@ -359,55 +359,55 @@ function About() {
   );
 }
 
-function ExperienceSection() {
-  const exp = DATA.experience[0];
-  return (
-    <section id="experience" style={{ padding: "100px 0", position: "relative", zIndex: 1 }}>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem" }}>
-        <FadeUp>
-          <SectionLabel>Experience</SectionLabel>
-          <SectionTitle>Where I've Worked</SectionTitle>
-          <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: "2rem", marginTop: "2.5rem", alignItems: "start" }}>
-            <div>
-              <div style={{ background: "rgba(56,189,248,.06)", border: "1px solid #38BDF8", borderRadius: 12, padding: "1rem 1.25rem", cursor: "pointer" }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: "#F0F4FF", marginBottom: 4 }}>{exp.company}</div>
-                <div style={{ fontSize: 11, color: "#3A4455" }}>{exp.period}</div>
-              </div>
-            </div>
-            <Card style={{ padding: "2.5rem" }} hover={false}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2rem", flexWrap: "wrap", gap: "1rem" }}>
-                <div>
-                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.5rem" }}>{exp.role}</div>
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: 14, color: "#8892AA", flexWrap: "wrap" }}>
-                    <span style={{ color: exp.color, fontWeight: 600 }}>{exp.company}</span>
-                    <span style={{ opacity: 0.3 }}>·</span><span>{exp.location}</span>
-                    <span style={{ opacity: 0.3 }}>·</span><span>{exp.period}</span>
-                  </div>
-                </div>
-                <span style={{ padding: "5px 12px", background: "rgba(52,211,153,.08)", border: "1px solid rgba(52,211,153,.2)", borderRadius: 999, fontSize: 12, color: "#34D399" }}>Full-time</span>
-              </div>
-              <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
-                {exp.highlights.map((h: string, i: number) => (
-                  <li key={i} style={{ display: "flex", gap: "0.75rem", fontSize: 15, color: "#8892AA", lineHeight: 1.7 }}>
-                    <span style={{ color: exp.color, flexShrink: 0, marginTop: 4, fontSize: 14 }}>▹</span>{h}
-                  </li>
-                ))}
-              </ul>
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,.07)" }}>
-                {exp.metrics.map((m: any) => (
-                  <div key={m.label} style={{ textAlign: "center" }}>
-                    <span style={{ display: "block", fontFamily: "'Syne',sans-serif", fontSize: "1.75rem", fontWeight: 800, color: m.color, lineHeight: 1 }}>{m.value}</span>
-                    <span style={{ fontSize: 11, color: "#3A4455", marginTop: 4, display: "block" }}>{m.label}</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </div>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
+// function ExperienceSection() {
+//   const exp = DATA.experience[0];
+//   return (
+//     <section id="experience" style={{ padding: "100px 0", position: "relative", zIndex: 1 }}>
+//       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem" }}>
+//         <FadeUp>
+//           <SectionLabel>Experience</SectionLabel>
+//           <SectionTitle>Where I've Worked</SectionTitle>
+//           <div style={{ display: "grid", gridTemplateColumns: "220px 1fr", gap: "2rem", marginTop: "2.5rem", alignItems: "start" }}>
+//             <div>
+//               <div style={{ background: "rgba(56,189,248,.06)", border: "1px solid #38BDF8", borderRadius: 12, padding: "1rem 1.25rem", cursor: "pointer" }}>
+//                 <div style={{ fontSize: 14, fontWeight: 700, color: "#F0F4FF", marginBottom: 4 }}>{exp.company}</div>
+//                 <div style={{ fontSize: 11, color: "#3A4455" }}>{exp.period}</div>
+//               </div>
+//             </div>
+//             <Card style={{ padding: "2.5rem" }} hover={false}>
+//               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2rem", flexWrap: "wrap", gap: "1rem" }}>
+//                 <div>
+//                   <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.5rem" }}>{exp.role}</div>
+//                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: 14, color: "#8892AA", flexWrap: "wrap" }}>
+//                     <span style={{ color: exp.color, fontWeight: 600 }}>{exp.company}</span>
+//                     <span style={{ opacity: 0.3 }}>·</span><span>{exp.location}</span>
+//                     <span style={{ opacity: 0.3 }}>·</span><span>{exp.period}</span>
+//                   </div>
+//                 </div>
+//                 <span style={{ padding: "5px 12px", background: "rgba(52,211,153,.08)", border: "1px solid rgba(52,211,153,.2)", borderRadius: 999, fontSize: 12, color: "#34D399" }}>Full-time</span>
+//               </div>
+//               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2rem" }}>
+//                 {exp.highlights.map((h: string, i: number) => (
+//                   <li key={i} style={{ display: "flex", gap: "0.75rem", fontSize: 15, color: "#8892AA", lineHeight: 1.7 }}>
+//                     <span style={{ color: exp.color, flexShrink: 0, marginTop: 4, fontSize: 14 }}>▹</span>{h}
+//                   </li>
+//                 ))}
+//               </ul>
+//               <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1rem", paddingTop: "2rem", borderTop: "1px solid rgba(255,255,255,.07)" }}>
+//                 {exp.metrics.map((m: any) => (
+//                   <div key={m.label} style={{ textAlign: "center" }}>
+//                     <span style={{ display: "block", fontFamily: "'Syne',sans-serif", fontSize: "1.75rem", fontWeight: 800, color: m.color, lineHeight: 1 }}>{m.value}</span>
+//                     <span style={{ fontSize: 11, color: "#3A4455", marginTop: 4, display: "block" }}>{m.label}</span>
+//                   </div>
+//                 ))}
+//               </div>
+//             </Card>
+//           </div>
+//         </FadeUp>
+//       </div>
+//     </section>
+//   );
+// }
 
 function Projects() {
   return (
