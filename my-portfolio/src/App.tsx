@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode, type Ref } from "react";
 
-
 const DATA = {
   name: "Nilesh Shete",
   title: "Frontend Developer",
@@ -74,9 +73,11 @@ const DATA = {
 
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap');
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;color:inherit}
   html{scroll-behavior:smooth}
   body{background:#080B14;color:#F0F4FF;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4,h5,h6{color:#F0F4FF}
+  p,span,div,a,li{color:inherit}
   ::selection{background:rgba(56,189,248,.18);color:#38BDF8}
   ::-webkit-scrollbar{width:5px}
   ::-webkit-scrollbar-track{background:#080B14}
@@ -150,7 +151,7 @@ function SectionLabel({ children }: { children: ReactNode }) {
 }
 
 function SectionTitle({ children }: { children: ReactNode }) {
-  return <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.85rem,3.5vw,2.5rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: "1rem" }} className="section-title">{children}</h2>;
+  return <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.85rem,3.5vw,2.5rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: "1rem", color: "#F0F4FF" }} className="section-title">{children}</h2>;
 }
 
 function Card({ children, style = {}, hover = true }: { children: ReactNode; style?: React.CSSProperties; hover?: boolean }) {
@@ -197,7 +198,7 @@ function Navbar() {
             </li>
           </ul>
           <button onClick={() => setOpen(!open)} style={{ display: "none", flexDirection: "column", gap: 5, background: "none", border: "none", cursor: "pointer", padding: 4 }} className="burger-btn">
-            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg)" : "none", }} />)}
+            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg)" : "none" }} />)}
           </button>
         </div>
       </nav>
@@ -220,11 +221,11 @@ function Hero() {
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem", width: "100%" }} className="hero-content">
         <div style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "3rem", alignItems: "center", marginBottom: 64 }} className="hero-grid">
           <div>
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(52,211,153,.09)", border: "1px solid rgba(52,211,153,.25)", borderRadius: 999, padding: "6px 16px", marginBottom: "1.5rem" }}>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(52,211,153,.09)", border: "1px solid rgba(52,211,153,.25)", borderRadius: 999, padding: "6px 16px", marginBottom: "1.5rem", color: "#34D399" }}>
               <span style={{ width: 7, height: 7, background: "#34D399", borderRadius: "50%", animation: "pulse 2s infinite" }} />
               Available for opportunities
             </div>
-            <h1 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(2.4rem,5.5vw,3.8rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "0.4rem", animation: "fadeUp .6s .2s both" }} className="hero-title">
+            <h1 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(2.4rem,5.5vw,3.8rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "0.4rem", animation: "fadeUp .6s .2s both", color: "#F0F4FF" }} className="hero-title">
               Hi, I'm <span className="grad">Nilesh Shete</span>
             </h1>
             <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 700, color: "#8892AA", marginBottom: "1.25rem", animation: "fadeUp .6s .3s both" }} className="hero-subtitle">Frontend Developer</h2>
@@ -301,7 +302,7 @@ function AvatarOrb() {
         { text: "🚀 4+ Years", bottom: 50, right: -45, delay: 1.2 },
         { text: "✅ React.js", bottom: 5, left: -10, delay: 2.5 },
       ].map((b, i) => (
-        <div key={i} style={{ position: "absolute", background: "#0D1220", border: "1px solid rgba(255,255,255,.09)", borderRadius: 9, padding: "6px 12px", fontSize: 11, fontWeight: 500, whiteSpace: "nowrap", ...(b.top !== undefined && { top: b.top }), ...(b.bottom !== undefined && { bottom: b.bottom }), ...(b.right !== undefined && { right: b.right }), ...(b.left !== undefined && { left: b.left }), animation: `flt 3s ease-in-out infinite` }}>
+        <div key={i} style={{ position: "absolute", background: "#0D1220", border: "1px solid rgba(255,255,255,.09)", borderRadius: 9, padding: "6px 12px", fontSize: 11, fontWeight: 500, whiteSpace: "nowrap", color: "#F0F4FF", ...(b.top !== undefined && { top: b.top }), ...(b.bottom !== undefined && { bottom: b.bottom }), ...(b.right !== undefined && { right: b.right }), ...(b.left !== undefined && { left: b.left }), animation: `flt 3s ease-in-out infinite` }}>
           {b.text}
         </div>
       ))}
@@ -347,7 +348,7 @@ function About() {
               {DATA.miniCards.map(c => (
                 <Card key={c.title} style={{ padding: "1.25rem" }}>
                   <span style={{ fontSize: "1.5rem", display: "block", marginBottom: "0.75rem" }}>{c.icon}</span>
-                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 14, fontWeight: 700, marginBottom: "0.4rem" }}>{c.title}</div>
+                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 14, fontWeight: 700, marginBottom: "0.4rem", color: "#F0F4FF" }}>{c.title}</div>
                   <p style={{ fontSize: 12.5, color: "#8892AA", lineHeight: 1.6 }}>{c.desc}</p>
                 </Card>
               ))}
@@ -377,7 +378,7 @@ function About() {
 //             <Card style={{ padding: "2.5rem" }} hover={false}>
 //               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "2rem", flexWrap: "wrap", gap: "1rem" }}>
 //                 <div>
-//                   <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.5rem" }}>{exp.role}</div>
+//                   <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 800, marginBottom: "0.5rem", color: "#F0F4FF" }}>{exp.role}</div>
 //                   <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: 14, color: "#8892AA", flexWrap: "wrap" }}>
 //                     <span style={{ color: exp.color, fontWeight: 600 }}>{exp.company}</span>
 //                     <span style={{ opacity: 0.3 }}>·</span><span>{exp.location}</span>
@@ -443,14 +444,14 @@ function ProjectCard({ project: p }: { project: ProjectType }) {
     <div
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      style={{ position: "relative", overflow: "hidden", background: hov ? "#131929" : "#0D1220", border: `1px solid ${hov ? (p.color) + "55" : "rgba(255,255,255,.07)"}`, borderRadius: 16, padding: "2rem", cursor: "pointer", transition: "all .3s", display: "flex", flexDirection: "column" }}
+      style={{ position: "relative", overflow: "hidden", background: hov ? "#131929" : "#0D1220", border: `1px solid ${hov ? (p.color) + "55" : "rgba(255,255,255,.07)"}`, borderRadius: 16, padding: "2rem", cursor: "pointer", transition: "all .3s", display: "flex", flexDirection: "column", color: "#F0F4FF" }}
     >
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: p.color, opacity: hov ? 1 : 0, transition: "opacity .3s" }} />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <span style={{ fontSize: "2rem" }}>{p.icon}</span>
         <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.25rem", fontWeight: 800, color: "#3A4455", opacity: 0.4 }}>{p.num}</span>
       </div>
-      <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.3 }}>{p.title}</div>
+      <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.3, color: "#F0F4FF" }}>{p.title}</div>
       <p style={{ fontSize: 14, color: "#8892AA", lineHeight: 1.75 }}>{p.desc}</p>
       <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#8892AA" }}>
         {p.highlights.map((h: string, i: number) => (
@@ -533,7 +534,7 @@ function Education() {
                   {edu.icon}
                 </div>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "1rem" }}>{edu.icon}</span>
-                <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.5rem", lineHeight: 1.4 }}>{edu.degree}</div>
+                <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.5rem", lineHeight: 1.4, color: "#F0F4FF" }}>{edu.degree}</div>
                 <div style={{ fontSize: 14, color: "#8892AA", lineHeight: 1.5 }}>{edu.institution}</div>
                 {edu.latest && <div style={{ display: "inline-block", marginTop: "1rem", padding: "4px 12px", background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.22)", borderRadius: 999, fontSize: 11, color: "#38BDF8", fontWeight: 600 }}>Latest</div>}
               </Card>
@@ -564,7 +565,7 @@ function Contact() {
               </div>
             </div>
             <Card style={{ padding: "2.5rem", background: "linear-gradient(135deg,rgba(56,189,248,.05),rgba(129,140,248,.05))", borderColor: "rgba(56,189,248,.15)" }} hover={false}>
-              <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 700, marginBottom: "1rem" }}>Ready to work together?</div>
+              <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 700, marginBottom: "1rem", color: "#F0F4FF" }}>Ready to work together?</div>
               <p style={{ color: "#8892AA", fontSize: 14.5, lineHeight: 1.75, marginBottom: "2rem" }}>I'm available for full-time roles, freelance projects, and consulting. Let's discuss how I can contribute to your next project.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 <a href={`mailto:${DATA.email}`} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 0", background: "#38BDF8", color: "#050810", fontWeight: 700, borderRadius: 10, textDecoration: "none", fontSize: 14, transition: "all .3s" }}>
@@ -587,7 +588,7 @@ function ContactLink({ href, label, value, icon }: { href: string; label: string
   return (
     <a href={href} target="_blank" rel="noreferrer"
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 1.25rem", background: "#0D1220", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.07)"}`, borderRadius: 12, transition: "all .3s", textDecoration: "none" }}>
+      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 1.25rem", background: "#0D1220", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.07)"}`, borderRadius: 12, transition: "all .3s", textDecoration: "none", color: "#F0F4FF" }}>
       <div style={{ width: 44, height: 44, background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.15)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: "#38BDF8", flexShrink: 0 }}>
         {icon}
       </div>
@@ -604,7 +605,7 @@ function Footer() {
     <footer style={{ padding: "2.5rem 0", borderTop: "1px solid rgba(255,255,255,.07)", position: "relative", zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }} className="footer-flex">
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 800 }}>
+          <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 800, color: "#F0F4FF" }}>
             <span style={{ color: "#38BDF8" }}>&lt;</span>NS<span style={{ color: "#38BDF8" }}>/&gt;</span>
           </span>
           <span style={{ fontSize: 13, color: "#3A4455" }}>Frontend Developer · React.js Expert · Pune, India</span>
