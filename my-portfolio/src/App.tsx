@@ -496,7 +496,6 @@ function Skills() {
               </Card>
             ))}
           </div>
-
           <div style={{ marginTop: "4rem" }}>
             <SectionLabel>Certifications</SectionLabel>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1rem", marginTop: "1.5rem" }} className="certs-grid">
