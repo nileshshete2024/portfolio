@@ -5,7 +5,7 @@ const DATA = {
   title: "Frontend Developer",
   email: "nileshshete2024@gmail.com",
   phone: "+91 9130362410",
-  location: "Pune, India",
+  location: "Kalyani Nagar,Pune, India",
   linkedin: "https://linkedin.com/in/nileshshete",
   about: "Frontend / React Developer with 4 years of experience building scalable fintech web applications and dashboards. Strong expertise in React.js, Next.js, TypeScript, Redux Toolkit, REST APIs, and performance optimization.",
   stats: [
@@ -75,13 +75,46 @@ const css = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500&display=swap');
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;color:inherit}
   html{scroll-behavior:smooth}
-  body{background:#080B14;color:#F0F4FF;font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-  h1,h2,h3,h4,h5,h6{color:#F0F4FF}
+  :root{
+    --bg:#080B14;
+    --text-primary:#F0F4FF;
+    --text-secondary:#8892AA;
+    --text-muted:#5C6A82;
+    --surface:#0D1220;
+    --surface-strong:#131929;
+    --border:rgba(255,255,255,.07);
+    --border-strong:rgba(255,255,255,.09);
+    --accent:#38BDF8;
+    --accent-contrast:#050810;
+    --scrollbar-track:#080B14;
+    --scrollbar-thumb:#38BDF8;
+    --selection-bg:rgba(56,189,248,.18);
+    --selection-fg:#38BDF8;
+    --shadow:rgba(0,0,0,.25) 0 10px 15px -3px, rgba(0,0,0,.12) 0 4px 6px -2px;
+  }
+  body.light{
+    --bg:#F8FAFF;
+    --text-primary:#0F172A;
+    --text-secondary:#475569;
+    --text-muted:#64748B;
+    --surface:#FFFFFF;
+    --surface-strong:#F1F5F9;
+    --border:rgba(15,23,42,.08);
+    --border-strong:rgba(15,23,42,.12);
+    --accent-contrast:#050810;
+    --scrollbar-track:#E2E8F0;
+    --scrollbar-thumb:#38BDF8;
+    --selection-bg:rgba(56,189,248,.18);
+    --selection-fg:#0369A1;
+    --shadow:rgba(15,23,42,0.08) 0 10px 15px -3px, rgba(15,23,42,0.04) 0 4px 6px -2px;
+  }
+  body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3,h4,h5,h6{color:var(--text-primary)}
   p,span,div,a,li{color:inherit}
-  ::selection{background:rgba(56,189,248,.18);color:#38BDF8}
+  ::selection{background:var(--selection-bg);color:var(--selection-fg)}
   ::-webkit-scrollbar{width:5px}
-  ::-webkit-scrollbar-track{background:#080B14}
-  ::-webkit-scrollbar-thumb{background:#38BDF8;border-radius:99px}
+  ::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+  ::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:99px}
   .grad{background:linear-gradient(135deg,#38BDF8 0%,#818CF8 50%,#34D399 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
   @keyframes blobf{0%,100%{transform:translate(0,0)}50%{transform:translate(35px,-45px)}}
   @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(1.2)}}
@@ -121,6 +154,18 @@ const css = `
   }
 `;
 
+const vars = {
+  textPrimary: "var(--text-primary)",
+  textSecondary: "var(--text-secondary)",
+  textMuted: "var(--text-muted)",
+  surface: "var(--surface)",
+  surfaceStrong: "var(--surface-strong)",
+  border: "var(--border)",
+  borderStrong: "var(--border-strong)",
+  accent: "var(--accent)",
+  accentContrast: "var(--accent-contrast)",
+};
+
 function useInView(threshold = 0.15): [Ref<HTMLDivElement>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -143,15 +188,15 @@ function FadeUp({ children, delay = 0, style = {} }: { children: ReactNode; dela
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: "#38BDF8", marginBottom: 10 }}>
-      <span style={{ display: "block", width: 22, height: 1, background: "#38BDF8" }} />
+    <div style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 11, fontWeight: 500, letterSpacing: "0.14em", textTransform: "uppercase", color: vars.accent, marginBottom: 10 }}>
+      <span style={{ display: "block", width: 22, height: 1, background: vars.accent }} />
       {children}
     </div>
   );
 }
 
 function SectionTitle({ children }: { children: ReactNode }) {
-  return <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.85rem,3.5vw,2.5rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: "1rem", color: "#F0F4FF" }} className="section-title">{children}</h2>;
+  return <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.85rem,3.5vw,2.5rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: "1rem", color: vars.textPrimary }} className="section-title">{children}</h2>;
 }
 
 function Card({ children, style = {}, hover = true }: { children: ReactNode; style?: React.CSSProperties; hover?: boolean }) {
@@ -161,8 +206,8 @@ function Card({ children, style = {}, hover = true }: { children: ReactNode; sty
       onMouseEnter={() => hover && setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: hov ? "#131929" : "#0D1220",
-        border: `1px solid ${hov ? "rgba(56,189,248,.32)" : "rgba(255,255,255,.07)"}`,
+        background: hov ? vars.surfaceStrong : vars.surface,
+        border: `1px solid ${hov ? "rgba(56,189,248,.32)" : vars.border}`,
         borderRadius: 16,
         transition: "all .3s ease",
         transform: hov ? "translateY(-3px)" : "none",
@@ -173,7 +218,7 @@ function Card({ children, style = {}, hover = true }: { children: ReactNode; sty
   );
 }
 
-function Navbar() {
+function Navbar({ theme, onToggle }: { theme: "light" | "dark"; onToggle: () => void }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
@@ -184,28 +229,36 @@ function Navbar() {
   const links = ["About", "Experience", "Projects", "Skills", "Contact"];
   return (
     <>
-      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: scrolled ? "0.8rem 2rem" : "1.25rem 2rem", background: scrolled ? "rgba(8,11,20,.9)" : "transparent", backdropFilter: scrolled ? "blur(20px)" : "none", borderBottom: scrolled ? "1px solid rgba(255,255,255,.05)" : "none", transition: "all .3s" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <a href="#hero" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "1.1rem", color: "#F0F4FF", textDecoration: "none" }}>
-            <span style={{ color: "#38BDF8" }}>&lt;</span>NS<span style={{ color: "#38BDF8" }}>/&gt;</span>
+      <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: scrolled ? "0.8rem 2rem" : "1.25rem 2rem", background: scrolled ? "rgba(8,11,20,.9)" : "transparent", backdropFilter: scrolled ? "blur(20px)" : "none", borderBottom: scrolled ? `1px solid ${vars.border}` : "none", transition: "all .3s" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
+          <a href="#hero" style={{ fontFamily: "'Syne',sans-serif", fontWeight: 800, fontSize: "1.1rem", color: vars.textPrimary, textDecoration: "none" }}>
+            <span style={{ color: vars.accent }}>&lt;</span>NS<span style={{ color: vars.accent }}>/&gt;</span>
           </a>
           <ul style={{ display: "flex", alignItems: "center", gap: "1.75rem", listStyle: "none" }} className="nav-desktop">
             {links.map(l => (
-              <li key={l}><a href={`#${l.toLowerCase()}`} style={{ color: "#8892AA", textDecoration: "none", fontSize: 14, fontWeight: 500 }}>{l}</a></li>
+              <li key={l}><a href={`#${l.toLowerCase()}`} style={{ color: vars.textSecondary, textDecoration: "none", fontSize: 14, fontWeight: 500 }}>{l}</a></li>
             ))}
             <li>
-              <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "8px 18px", background: "#38BDF8", color: "#050810", borderRadius: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}>LinkedIn</a>
+              <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "8px 18px", background: vars.accent, color: vars.accentContrast, borderRadius: 8, fontSize: 13, fontWeight: 600, textDecoration: "none" }}>LinkedIn</a>
+            </li>
+            <li>
+              <button onClick={onToggle} style={{ padding: "8px 16px", borderRadius: 8, border: `1px solid ${vars.border}`, background: vars.surface, color: vars.textPrimary, cursor: "pointer", fontSize: 13, fontWeight: 600 }}>
+                {theme === "dark" ? "Light Mode" : "Dark Mode"}
+              </button>
             </li>
           </ul>
           <button onClick={() => setOpen(!open)} style={{ display: "none", flexDirection: "column", gap: 5, background: "none", border: "none", cursor: "pointer", padding: 4 }} className="burger-btn">
-            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: "#F0F4FF", borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg)" : "none" }} />)}
+            {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: vars.textPrimary, borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg)" : "none" }} />)}
           </button>
         </div>
       </nav>
       {open && (
-        <div style={{ position: "fixed", top: 0, right: 0, height: "100vh", width: 280, background: "rgba(13,18,32,.98)", backdropFilter: "blur(30px)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.5rem", padding: "100px 1.5rem", animation: "fadeUp .3s" }}>
-          {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{ color: "#8892AA", textDecoration: "none", fontSize: 17, fontWeight: 500 }}>{l}</a>)}
-          <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "10px 20px", background: "#38BDF8", color: "#050810", borderRadius: 9, fontSize: 14, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>LinkedIn</a>
+        <div style={{ position: "fixed", top: 0, right: 0, height: "100vh", width: 280, background: theme === "dark" ? "rgba(13,18,32,.98)" : "rgba(248,250,255,.98)", backdropFilter: "blur(30px)", zIndex: 99, display: "flex", flexDirection: "column", gap: "1.5rem", padding: "100px 1.5rem", animation: "fadeUp .3s" }}>
+          {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setOpen(false)} style={{ color: vars.textSecondary, textDecoration: "none", fontSize: 17, fontWeight: 500 }}>{l}</a>)}
+          <button onClick={() => { onToggle(); setOpen(false); }} style={{ padding: "10px 20px", background: vars.surface, color: vars.textPrimary, border: `1px solid ${vars.border}`, borderRadius: 9, fontSize: 14, fontWeight: 600, cursor: "pointer" }}>
+            {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          </button>
+          <a href="https://linkedin.com/in/nileshshete" target="_blank" rel="noreferrer" style={{ padding: "10px 20px", background: vars.accent, color: vars.accentContrast, borderRadius: 9, fontSize: 14, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>LinkedIn</a>
         </div>
       )}
       <style>{`
@@ -225,11 +278,11 @@ function Hero() {
               <span style={{ width: 7, height: 7, background: "#34D399", borderRadius: "50%", animation: "pulse 2s infinite" }} />
               Available for opportunities
             </div>
-            <h1 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(2.4rem,5.5vw,3.8rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "0.4rem", animation: "fadeUp .6s .2s both", color: "#F0F4FF" }} className="hero-title">
+            <h1 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(2.4rem,5.5vw,3.8rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: "0.4rem", animation: "fadeUp .6s .2s both", color: vars.textPrimary }} className="hero-title">
               Hi, I'm <span className="grad">Nilesh Shete</span>
             </h1>
-            <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 700, color: "#8892AA", marginBottom: "1.25rem", animation: "fadeUp .6s .3s both" }} className="hero-subtitle">Frontend Developer</h2>
-            <p style={{ color: "#8892AA", fontSize: "1rem", lineHeight: 1.8, maxWidth: 480, marginBottom: "1.5rem", animation: "fadeUp .6s .35s both" }}>
+            <h2 style={{ fontFamily: "'Syne',sans-serif", fontSize: "clamp(1.1rem,2.5vw,1.5rem)", fontWeight: 700, color: vars.textSecondary, marginBottom: "1.25rem", animation: "fadeUp .6s .3s both" }} className="hero-subtitle">Frontend Developer</h2>
+            <p style={{ color: vars.textSecondary, fontSize: "1rem", lineHeight: 1.8, maxWidth: 480, marginBottom: "1.5rem", animation: "fadeUp .6s .35s both" }}>
               Building scalable fintech web apps with React.js, Next.js & TypeScript. 4 years of turning complex requirements into fast, beautiful UIs.
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 7, marginBottom: "2rem", animation: "fadeUp .6s .4s both" }}>
@@ -261,11 +314,11 @@ function Hero() {
           <AvatarOrb />
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1.5rem", padding: "2rem", background: "#0D1220", border: "1px solid rgba(255,255,255,.07)", borderRadius: 16, animation: "fadeUp .6s .6s both" }} className="stat-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: "1.5rem", padding: "2rem", background: vars.surface, border: `1px solid ${vars.border}`, borderRadius: 16, animation: "fadeUp .6s .6s both" }} className="stat-grid">
           {DATA.stats.map(s => (
             <div key={s.label} style={{ textAlign: "center" }}>
               <span className="grad" style={{ display: "block", fontFamily: "'Syne',sans-serif", fontSize: "2.2rem", fontWeight: 800, lineHeight: 1 }}>{s.value}</span>
-              <span style={{ fontSize: 12, color: "#3A4455", marginTop: 4, display: "block" }}>{s.label}</span>
+              <span style={{ fontSize: 12, color: vars.textMuted, marginTop: 4, display: "block" }}>{s.label}</span>
             </div>
           ))}
         </div>
@@ -283,7 +336,7 @@ function SocialIcon({ href, children }: { href: string; children: ReactNode }) {
   const [hov, setHov] = useState(false);
   return (
     <a href={href} target="_blank" rel="noreferrer" onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.1)"}`, borderRadius: 10, color: hov ? "#38BDF8" : "#8892AA", transition: "all .3s", textDecoration: "none" }}>
+      style={{ width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center", border: `1px solid ${hov ? vars.accent : vars.border}`, borderRadius: 10, color: hov ? vars.accent : vars.textSecondary, transition: "all .3s", textDecoration: "none" }}>
       {children}
     </a>
   );
@@ -302,7 +355,7 @@ function AvatarOrb() {
         { text: "🚀 4+ Years", bottom: 50, right: -45, delay: 1.2 },
         { text: "✅ React.js", bottom: 5, left: -10, delay: 2.5 },
       ].map((b, i) => (
-        <div key={i} style={{ position: "absolute", background: "#0D1220", border: "1px solid rgba(255,255,255,.09)", borderRadius: 9, padding: "6px 12px", fontSize: 11, fontWeight: 500, whiteSpace: "nowrap", color: "#F0F4FF", ...(b.top !== undefined && { top: b.top }), ...(b.bottom !== undefined && { bottom: b.bottom }), ...(b.right !== undefined && { right: b.right }), ...(b.left !== undefined && { left: b.left }), animation: `flt 3s ease-in-out infinite` }}>
+        <div key={i} style={{ position: "absolute", background: vars.surface, border: `1px solid ${vars.borderStrong}`, borderRadius: 9, padding: "6px 12px", fontSize: 11, fontWeight: 500, whiteSpace: "nowrap", color: vars.textPrimary, ...(b.top !== undefined && { top: b.top }), ...(b.bottom !== undefined && { bottom: b.bottom }), ...(b.right !== undefined && { right: b.right }), ...(b.left !== undefined && { left: b.left }), animation: `flt 3s ease-in-out infinite` }}>
           {b.text}
         </div>
       ))}
@@ -319,8 +372,8 @@ function About() {
             <div>
               <SectionLabel>About Me</SectionLabel>
               <SectionTitle>Crafting Digital<br />Experiences</SectionTitle>
-              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8, marginBottom: "1rem" }}>{DATA.about}</p>
-              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8 }}>I thrive at the intersection of design and engineering — turning complex business requirements into clean, intuitive interfaces that users love.</p>
+              <p style={{ color: vars.textSecondary, fontSize: 15.5, lineHeight: 1.8, marginBottom: "1rem" }}>{DATA.about}</p>
+              <p style={{ color: vars.textSecondary, fontSize: 15.5, lineHeight: 1.8 }}>I thrive at the intersection of design and engineering — turning complex business requirements into clean, intuitive interfaces that users love.</p>
               <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {[
                   { icon: "📍", label: "Location", value: DATA.location },
@@ -332,14 +385,14 @@ function About() {
                       {item.icon}
                     </div>
                     <div>
-                      <span style={{ display: "block", fontSize: 11, color: "#3A4455", textTransform: "uppercase", letterSpacing: "0.1em" }}>{item.label}</span>
-                      <span style={{ fontSize: 14, color: "#F0F4FF", fontWeight: 500 }}>{item.value}</span>
+                      <span style={{ display: "block", fontSize: 11, color: vars.textMuted, textTransform: "uppercase", letterSpacing: "0.1em" }}>{item.label}</span>
+                      <span style={{ fontSize: 14, color: vars.textPrimary, fontWeight: 500 }}>{item.value}</span>
                     </div>
                   </div>
                 ))}
               </div>
               <div style={{ display: "flex", gap: "1rem", marginTop: "2rem", flexWrap: "wrap" }}>
-                <a href={DATA.linkedin} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "11px 23px", background: "transparent", color: "#F0F4FF", border: "1px solid #38BDF8", borderRadius: 10, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
+                <a href={DATA.linkedin} target="_blank" rel="noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 7, padding: "11px 23px", background: "transparent", color: vars.textPrimary, border: "1px solid #38BDF8", borderRadius: 10, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
                   View LinkedIn ↗
                 </a>
               </div>
@@ -348,8 +401,8 @@ function About() {
               {DATA.miniCards.map(c => (
                 <Card key={c.title} style={{ padding: "1.25rem" }}>
                   <span style={{ fontSize: "1.5rem", display: "block", marginBottom: "0.75rem" }}>{c.icon}</span>
-                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 14, fontWeight: 700, marginBottom: "0.4rem", color: "#F0F4FF" }}>{c.title}</div>
-                  <p style={{ fontSize: 12.5, color: "#8892AA", lineHeight: 1.6 }}>{c.desc}</p>
+                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 14, fontWeight: 700, marginBottom: "0.4rem", color: vars.textPrimary }}>{c.title}</div>
+                  <p style={{ fontSize: 12.5, color: vars.textSecondary, lineHeight: 1.6 }}>{c.desc}</p>
                 </Card>
               ))}
             </div>
@@ -417,7 +470,7 @@ function Projects() {
         <FadeUp>
           <SectionLabel>Projects</SectionLabel>
           <SectionTitle>Things I've Built</SectionTitle>
-          <p style={{ color: "#8892AA", maxWidth: 580, marginBottom: "3rem", fontSize: 15.5 }}>A curated selection of projects from my 4 years at Easebuzz — fintech dashboards, PWAs, GenAI integrations, and full-stack systems.</p>
+          <p style={{ color: vars.textSecondary, maxWidth: 580, marginBottom: "3rem", fontSize: 15.5 }}>A curated selection of projects from my 4 years at Easebuzz — fintech dashboards, PWAs, GenAI integrations, and full-stack systems.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem" }} className="projects-grid">
             {DATA.projects.map((p, i) => <ProjectCard key={i} project={p} />)}
           </div>
@@ -444,16 +497,16 @@ function ProjectCard({ project: p }: { project: ProjectType }) {
     <div
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      style={{ position: "relative", overflow: "hidden", background: hov ? "#131929" : "#0D1220", border: `1px solid ${hov ? (p.color) + "55" : "rgba(255,255,255,.07)"}`, borderRadius: 16, padding: "2rem", cursor: "pointer", transition: "all .3s", display: "flex", flexDirection: "column", color: "#F0F4FF" }}
+      style={{ position: "relative", overflow: "hidden", background: hov ? vars.surfaceStrong : vars.surface, border: `1px solid ${hov ? (p.color) + "55" : vars.border}`, borderRadius: 16, padding: "2rem", cursor: "pointer", transition: "all .3s", display: "flex", flexDirection: "column", color: vars.textPrimary }}
     >
       <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2, background: p.color, opacity: hov ? 1 : 0, transition: "opacity .3s" }} />
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <span style={{ fontSize: "2rem" }}>{p.icon}</span>
-        <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.25rem", fontWeight: 800, color: "#3A4455", opacity: 0.4 }}>{p.num}</span>
+        <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.25rem", fontWeight: 800, color: vars.textMuted, opacity: 0.4 }}>{p.num}</span>
       </div>
-      <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.3, color: "#F0F4FF" }}>{p.title}</div>
-      <p style={{ fontSize: 14, color: "#8892AA", lineHeight: 1.75 }}>{p.desc}</p>
-      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: "#8892AA" }}>
+      <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.2rem", fontWeight: 700, lineHeight: 1.3, color: vars.textPrimary }}>{p.title}</div>
+      <p style={{ fontSize: 14, color: vars.textSecondary, lineHeight: 1.75 }}>{p.desc}</p>
+      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6, fontSize: 13, color: vars.textSecondary }}>
         {p.highlights.map((h: string, i: number) => (
           <li key={i} style={{ display: "flex", gap: 8, alignItems: "flex-start", lineHeight: 1.5 }}>
             <span style={{ color: p.color, flexShrink: 0, fontSize: 11, marginTop: 2 }}>✓</span>{h}
@@ -478,17 +531,17 @@ function Skills() {
         <FadeUp>
           <SectionLabel>Skills</SectionLabel>
           <SectionTitle>Tech Stack</SectionTitle>
-          <p style={{ color: "#8892AA", maxWidth: 540, marginBottom: "3rem", fontSize: 15.5 }}>Technologies and tools I work with daily to build production-ready frontend applications.</p>
+          <p style={{ color: vars.textSecondary, maxWidth: 540, marginBottom: "3rem", fontSize: 15.5 }}>Technologies and tools I work with daily to build production-ready frontend applications.</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "1.25rem" }} className="skills-grid">
             {DATA.skills.map(cat => (
               <Card key={cat.name} style={{ padding: "1.5rem", gridColumn: (cat as any).span2 ? "span 2" : "span 1" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 9, marginBottom: "1rem" }}>
                   <div style={{ width: 8, height: 8, borderRadius: "50%", background: cat.color, flexShrink: 0 }} />
-                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#8892AA" }}>{cat.name}</div>
+                  <div style={{ fontFamily: "'Syne',sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: vars.textSecondary }}>{cat.name}</div>
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {cat.items.map((item: string) => (
-                    <span key={item} style={{ padding: "5px 11px", background: `${cat.color}0D`, border: `1px solid ${cat.color}28`, borderRadius: 6, fontSize: 12.5, fontWeight: 500, color: "#F0F4FF" }}>
+                    <span key={item} style={{ padding: "5px 11px", background: `${cat.color}0D`, border: `1px solid ${cat.color}28`, borderRadius: 6, fontSize: 12.5, fontWeight: 500, color: vars.textPrimary }}>
                       {item}
                     </span>
                   ))}
@@ -503,10 +556,10 @@ function Skills() {
                 <Card key={i} style={{ display: "flex", alignItems: "flex-start", gap: "1rem", padding: "1.25rem" }}>
                   <span style={{ fontSize: "1.4rem", flexShrink: 0 }}>🎓</span>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: "#F0F4FF", lineHeight: 1.4, marginBottom: 4 }}>{cert.name}</div>
+                    <div style={{ fontSize: 14, fontWeight: 600, color: vars.textPrimary, lineHeight: 1.4, marginBottom: 4 }}>{cert.name}</div>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 12, color: "#38BDF8", fontWeight: 500 }}>{cert.issuer}</span>
-                      <span style={{ fontSize: 11, color: "#3A4455", padding: "2px 8px", background: "rgba(255,255,255,.04)", borderRadius: 4 }}>{cert.year}</span>
+                      <span style={{ fontSize: 12, color: vars.accent, fontWeight: 500 }}>{cert.issuer}</span>
+                      <span style={{ fontSize: 11, color: vars.textMuted, padding: "2px 8px", background: "rgba(255,255,255,.04)", borderRadius: 4 }}>{cert.year}</span>
                     </div>
                   </div>
                 </Card>
@@ -529,12 +582,12 @@ function Education() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "1.5rem", marginTop: "3rem" }} className="edu-grid">
             {DATA.education.map((edu, i) => (
               <Card key={i} style={{ position: "relative", padding: "2rem" }}>
-                <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "3rem", fontWeight: 800, color: "#F0F4FF", opacity: 0.07, position: "absolute", top: "1.5rem", right: "1.5rem", lineHeight: 1 }}>
+                <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "3rem", fontWeight: 800, color: vars.textPrimary, opacity: 0.07, position: "absolute", top: "1.5rem", right: "1.5rem", lineHeight: 1 }}>
                   {edu.icon}
                 </div>
                 <span style={{ fontSize: "2rem", display: "block", marginBottom: "1rem" }}>{edu.icon}</span>
-                <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.5rem", lineHeight: 1.4, color: "#F0F4FF" }}>{edu.degree}</div>
-                <div style={{ fontSize: 14, color: "#8892AA", lineHeight: 1.5 }}>{edu.institution}</div>
+                <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.5rem", lineHeight: 1.4, color: vars.textPrimary }}>{edu.degree}</div>
+                <div style={{ fontSize: 14, color: vars.textSecondary, lineHeight: 1.5 }}>{edu.institution}</div>
                 {edu.latest && <div style={{ display: "inline-block", marginTop: "1rem", padding: "4px 12px", background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.22)", borderRadius: 999, fontSize: 11, color: "#38BDF8", fontWeight: 600 }}>Latest</div>}
               </Card>
             ))}
@@ -554,7 +607,7 @@ function Contact() {
             <div>
               <SectionLabel>Contact</SectionLabel>
               <SectionTitle>Let's Build<br />Something Together</SectionTitle>
-              <p style={{ color: "#8892AA", fontSize: 15.5, lineHeight: 1.8, marginBottom: "2.5rem" }}>I'm currently open to new opportunities. Whether you have a project in mind, want to discuss potential collaborations, or just want to chat — I'd love to hear from you!</p>
+              <p style={{ color: vars.textSecondary, fontSize: 15.5, lineHeight: 1.8, marginBottom: "2.5rem" }}>I'm currently open to new opportunities. Whether you have a project in mind, want to discuss potential collaborations, or just want to chat — I'd love to hear from you!</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 {[
                   { href: `mailto:${DATA.email}`, label: "Email", value: DATA.email, icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M3 8l9 6 9-6M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg> },
@@ -564,8 +617,8 @@ function Contact() {
               </div>
             </div>
             <Card style={{ padding: "2.5rem", background: "linear-gradient(135deg,rgba(56,189,248,.05),rgba(129,140,248,.05))", borderColor: "rgba(56,189,248,.15)" }} hover={false}>
-              <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 700, marginBottom: "1rem", color: "#F0F4FF" }}>Ready to work together?</div>
-              <p style={{ color: "#8892AA", fontSize: 14.5, lineHeight: 1.75, marginBottom: "2rem" }}>I'm available for full-time roles, freelance projects, and consulting. Let's discuss how I can contribute to your next project.</p>
+              <div style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.5rem", fontWeight: 700, marginBottom: "1rem", color: vars.textPrimary }}>Ready to work together?</div>
+              <p style={{ color: vars.textSecondary, fontSize: 14.5, lineHeight: 1.75, marginBottom: "2rem" }}>I'm available for full-time roles, freelance projects, and consulting. Let's discuss how I can contribute to your next project.</p>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 <a href={`mailto:${DATA.email}`} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, padding: "13px 0", background: "#38BDF8", color: "#050810", fontWeight: 700, borderRadius: 10, textDecoration: "none", fontSize: 14, transition: "all .3s" }}>
                   Send me an email →
@@ -587,13 +640,13 @@ function ContactLink({ href, label, value, icon }: { href: string; label: string
   return (
     <a href={href} target="_blank" rel="noreferrer"
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 1.25rem", background: "#0D1220", border: `1px solid ${hov ? "#38BDF8" : "rgba(255,255,255,.07)"}`, borderRadius: 12, transition: "all .3s", textDecoration: "none", color: "#F0F4FF" }}>
-      <div style={{ width: 44, height: 44, background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.15)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: "#38BDF8", flexShrink: 0 }}>
+      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "1rem 1.25rem", background: vars.surface, border: `1px solid ${hov ? vars.accent : vars.border}`, borderRadius: 12, transition: "all .3s", textDecoration: "none", color: vars.textPrimary }}>
+      <div style={{ width: 44, height: 44, background: "rgba(56,189,248,.08)", border: "1px solid rgba(56,189,248,.15)", borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", color: vars.accent, flexShrink: 0 }}>
         {icon}
       </div>
       <div>
-        <span style={{ display: "block", fontSize: 11, color: "#3A4455", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 2 }}>{label}</span>
-        <span style={{ fontSize: 14, color: "#F0F4FF", fontWeight: 500 }}>{value}</span>
+        <span style={{ display: "block", fontSize: 11, color: vars.textMuted, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 2 }}>{label}</span>
+        <span style={{ fontSize: 14, color: vars.textPrimary, fontWeight: 500 }}>{value}</span>
       </div>
     </a>
   );
@@ -601,17 +654,17 @@ function ContactLink({ href, label, value, icon }: { href: string; label: string
 
 function Footer() {
   return (
-    <footer style={{ padding: "2.5rem 0", borderTop: "1px solid rgba(255,255,255,.07)", position: "relative", zIndex: 1 }}>
+    <footer style={{ padding: "2.5rem 0", borderTop: `1px solid ${vars.border}`, position: "relative", zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem" }} className="footer-flex">
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 800, color: "#F0F4FF" }}>
-            <span style={{ color: "#38BDF8" }}>&lt;</span>NS<span style={{ color: "#38BDF8" }}>/&gt;</span>
+          <span style={{ fontFamily: "'Syne',sans-serif", fontSize: "1.1rem", fontWeight: 800, color: vars.textPrimary }}>
+            <span style={{ color: vars.accent }}>&lt;</span>NS<span style={{ color: vars.accent }}>/&gt;</span>
           </span>
-          <span style={{ fontSize: 13, color: "#3A4455" }}>Frontend Developer · React.js Expert · Pune, India</span>
+          <span style={{ fontSize: 13, color: vars.textMuted }}>Frontend Developer · React.js Expert · Pune, India</span>
         </div>
         <div style={{ textAlign: "right" }}>
-          <div style={{ fontSize: 13, color: "#3A4455" }}>Designed & built by <span style={{ color: "#38BDF8" }}>Nilesh Shete</span></div>
-          <div style={{ fontSize: 12, color: "#3A4455", opacity: 0.5, marginTop: 3 }}>© {new Date().getFullYear()} All rights reserved</div>
+          <div style={{ fontSize: 13, color: vars.textMuted }}>Designed & built by <span style={{ color: vars.accent }}>Nilesh Shete</span></div>
+          <div style={{ fontSize: 12, color: vars.textMuted, opacity: 0.5, marginTop: 3 }}>© {new Date().getFullYear()} All rights reserved</div>
         </div>
       </div>
     </footer>
@@ -619,6 +672,22 @@ function Footer() {
 }
 
 export default function App() {
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+
+  useEffect(() => {
+    const stored = window.localStorage.getItem("theme") as "light" | "dark" | null;
+    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    setTheme(stored ?? preferred);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("light", theme === "light");
+    document.body.classList.toggle("dark", theme === "dark");
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(prev => (prev === "dark" ? "light" : "dark"));
+
   return (
     <>
       <style>{css}</style>
@@ -626,7 +695,7 @@ export default function App() {
         <div style={{ position: "absolute", width: 700, height: 700, background: "#0EA5E9", borderRadius: "50%", filter: "blur(120px)", top: -250, right: -200, opacity: 0.07, animation: "blobf 9s infinite" }} />
         <div style={{ position: "absolute", width: 600, height: 600, background: "#818CF8", borderRadius: "50%", filter: "blur(120px)", bottom: 100, left: -200, opacity: 0.07, animation: "blobf 12s infinite reverse" }} />
       </div>
-      <Navbar />
+      <Navbar theme={theme} onToggle={toggleTheme} />
       <main>
         <Hero />
         <About />
