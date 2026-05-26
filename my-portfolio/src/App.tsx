@@ -247,6 +247,8 @@ function Navbar({ theme, onToggle }: { theme: "light" | "dark"; onToggle: () => 
               </button>
             </li>
           </ul>
+
+          
           <button onClick={() => setOpen(!open)} style={{ display: "none", flexDirection: "column", gap: 5, background: "none", border: "none", cursor: "pointer", padding: 4 }} className="burger-btn">
             {[0,1,2].map(i => <span key={i} style={{ display: "block", width: 24, height: 2, background: vars.textPrimary, borderRadius: 2, transition: "all .3s", transform: open && i===0 ? "rotate(45deg)" : open && i===1 ? "scaleX(0)" : open && i===2 ? "rotate(-45deg)" : "none" }} />)}
           </button>
