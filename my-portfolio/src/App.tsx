@@ -525,8 +525,6 @@ function ProjectCard({ project: p }: { project: ProjectType }) {
   );
 }
 
-
-
 function Skills() {
   return (
     <section id="skills" style={{ padding: "100px 0", position: "relative", zIndex: 1 }} className="section">
